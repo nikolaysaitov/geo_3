@@ -1,0 +1,30 @@
+.container__routes{
+    padding: 0px !important;
+   
+
+}
+.p-component{
+    font-size: 14px !important;
+
+}
+.p-inputtext{
+    height: 39px !important;
+}
+
+.ui-toast {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+.ant-picker{
+    height: 39px !important;
+    margin-left: 10px;
+    width: 282px;
+}
+
+input {
+
+    margin-bottom: 0px;
+
+}
