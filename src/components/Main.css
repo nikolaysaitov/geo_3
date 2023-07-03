@@ -1,0 +1,7 @@
+.main_container{
+    min-height: 100% !important;
+}
+
+.recharts-responsive-container{
+    min-height: 700px !important;
+}

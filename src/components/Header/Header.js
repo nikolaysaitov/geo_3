@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu } from "antd";
+import { Menu, Badge } from "antd";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
@@ -10,6 +10,15 @@ import "./Header.css";
 import { connect } from "react-redux";
 
 const Header = ({ userGroup, userName, userSurName }) => {
+  //количество нераспределенных заказов(сделать через redux)
+  const [count, setCount] = useState(Math.floor(Math.random() * 100) + 1);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCount(Math.floor(Math.random() * 100) + 1);
+  }, 5000);
+  return () => clearInterval(interval);
+}, []);
   const history = useHistory(); // создаем объект history
   const handleLogout = () => {
     localStorage.clear();
@@ -27,7 +36,6 @@ const Header = ({ userGroup, userName, userSurName }) => {
 
   const itemsOwner = [
     getItem(`${userSurName} ${userName}`, "sub2", <GrUserExpert />, [
-      
       getItem(<Link to="##">Изменить пароль</Link>, "/pass"),
       getItem(<div onClick={handleLogout}>Выйти</div>, "/signin"),
     ]),
@@ -62,7 +70,11 @@ const Header = ({ userGroup, userName, userSurName }) => {
     },
 
     {
-      label: <Link to="##">Распределить заказы</Link>,
+      label: (
+        <Badge size="default" count={count} style={{ transform: "translate(83%, -69%)" }}>
+          <Link to="/districts">Распределить заказы</Link>
+        </Badge>
+      ),
       key: "/districts",
       icon: <GrTask />,
     },
@@ -74,7 +86,6 @@ const Header = ({ userGroup, userName, userSurName }) => {
   ];
   const itemsDispatcher = [
     getItem(`${userSurName} ${userName}`, "sub2", <GrUserExpert />, [
-  
       getItem(<Link to="##">Изменить пароль</Link>, "/pass"),
       getItem(<div onClick={handleLogout}>Выйти</div>, "/signin"),
     ]),
@@ -90,8 +101,6 @@ const Header = ({ userGroup, userName, userSurName }) => {
       icon: <GrUserWorker />,
     },
 
-   
-
     {
       label: <Link to="/cars">Автомобили</Link>,
       key: "/cars",
@@ -104,7 +113,11 @@ const Header = ({ userGroup, userName, userSurName }) => {
     },
 
     {
-      label: <Link to="##">Распределить заказы</Link>,
+      label: (
+        <Badge size="default" count={count} style={{ transform: "translate(83%, -69%)" }}>
+          <Link to="/districts">Распределить заказы</Link>
+        </Badge>
+      ),
       key: "/districts",
       icon: <GrTask />,
     },
@@ -116,7 +129,6 @@ const Header = ({ userGroup, userName, userSurName }) => {
   ];
   const itemsManager = [
     getItem(`${userSurName} ${userName}`, "sub2", <GrUserExpert />, [
-     
       getItem(<Link to="##">Изменить пароль</Link>, "/pass"),
       getItem(<div onClick={handleLogout}>Выйти</div>, "/signin"),
     ]),
@@ -136,7 +148,7 @@ const Header = ({ userGroup, userName, userSurName }) => {
     getItem("Пользователи", "sub3", <FiUsers />, [
       getItem(<Link to="/couriers">Водители</Link>, "/couriers", <GrUserWorker />),
       getItem(<Link to="/dispatchers">Диспетчера</Link>, "/dispatchers", <GrUser />),
-      getItem(<Link to="/managers">Управляющие</Link>, "/managers", <GrUserManager />),
+      // getItem(<Link to="/managers">Управляющие</Link>, "/managers", <GrUserManager />),
     ]),
 
     {
@@ -151,7 +163,11 @@ const Header = ({ userGroup, userName, userSurName }) => {
     },
 
     {
-      label: <Link to="##">Распределить заказы</Link>,
+      label: (
+        <Badge size="default" count={count} style={{ transform: "translate(83%, -69%)" }}>
+          <Link to="/districts">Распределить заказы</Link>
+        </Badge>
+      ),
       key: "/districts",
       icon: <GrTask />,
     },
@@ -167,12 +183,9 @@ const Header = ({ userGroup, userName, userSurName }) => {
       getItem(<Link to="##">Изменить пароль</Link>, "/pass"),
       getItem(<div onClick={handleLogout}>Выйти</div>, "/signin"),
     ]),
-
-
-
     {
-      label: <Link to="/routes">Посмотреть маршруты</Link>,
-      key: "/routes",
+      label: <Link to="/courier_acc">Посмотреть маршруты</Link>,
+      key: "/courier_acc",
       icon: <GrMapLocation />,
     },
   ];
@@ -216,7 +229,7 @@ function mapStateToProps(state) {
   return {
     userGroup: state.userGroup,
     userName: state.userName,
-    userSurName: state.userSurName
+    userSurName: state.userSurName,
   };
 }
 

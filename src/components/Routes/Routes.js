@@ -12,7 +12,6 @@ import { BsSearch } from "react-icons/bs";
 
 import { Spin } from "antd";
 import { Switch } from "antd";
-
 import { FilterMatchMode, FilterOperator, filterMatchModeOptions } from "primereact/api";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -20,54 +19,6 @@ import { InputText } from "primereact/inputtext";
 import { Toast } from "primereact/toast";
 
 const { RangePicker } = DatePicker;
-
-// function Routes() {
-//   const [startDate, setStartDate] = useState(null);
-//   const [endDate, setEndDate] = useState(null);
-
-//   const handleDateChange = (dates) => {
-//     if (dates) {
-//       const [start, end] = dates;
-//       setStartDate(start.format("YYYY-MM-DD"));
-//       setEndDate(end.format("YYYY-MM-DD"));
-//     }
-//   };
-//   console.log(startDate);
-//   console.log(endDate);
-
-//   async function getRoutes() {
-//     const token = localStorage.getItem("access");
-//     const response = await fetch(`${_apiBase}/api/v1/routes/?delivery_date__gte=2023-06-21&delivery_date__lte=2023-06-25`, {
-//       method: "GET",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `JWT ${token}`,
-//       },
-//       body: JSON.stringify(),
-//     });
-
-//     if (response.ok) {
-//       const data = await response.json();
-//       console.log(data);
-//     } else {
-//       const data = await response.json();
-//       console.log(data);
-//       alert(data.detail);
-//     }
-//   }
-//   return (
-//     <div className="container">
-//       <h1>Routes.js</h1>
-//       <ConfigProvider locale={locale}>
-//         <Space direction="vertical" size={12}>
-//           <RangePicker format={"DD-MM-YYYY"} onChange={handleDateChange} />
-//         </Space>
-//       </ConfigProvider>
-
-//       <button onClick={getRoutes}>Routes</button>
-//     </div>
-//   );
-// }
 
 function Routes() {
   //Поиск маршрутов по дате:
@@ -79,24 +30,23 @@ function Routes() {
       const [start, end] = dates;
       setStartDate(start.format("YYYY-MM-DD"));
       setEndDate(end.format("YYYY-MM-DD"));
-     
     }
   };
 
   const today = new Date();
-const year = today.getFullYear();
-let month = today.getMonth() + 1;
-let day = today.getDate();
+  const year = today.getFullYear();
+  let month = today.getMonth() + 1;
+  let day = today.getDate();
 
-if (month < 10) {
-  month = '0' + month;
-}
+  if (month < 10) {
+    month = "0" + month;
+  }
 
-if (day < 10) {
-  day = '0' + day;
-}
+  if (day < 10) {
+    day = "0" + day;
+  }
 
-const formattedDate = `${year}-${month}-${day}`;
+  const formattedDate = `${year}-${month}-${day}`;
   console.log(startDate);
   console.log(endDate);
 
@@ -110,7 +60,6 @@ const formattedDate = `${year}-${month}-${day}`;
       life: 5000,
     });
   };
-  
 
   const [routes, setRoutes] = useState([]);
   const [globalFilterValue, setGlobalFilterValue] = useState("");
@@ -135,13 +84,18 @@ const formattedDate = `${year}-${month}-${day}`;
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("access");
-        const response = await fetch(`${_apiBase}/api/v1/routes/?delivery_date__gte=${startDate ? startDate : formattedDate}&delivery_date__lte=${endDate ? endDate : formattedDate}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `JWT ${token}`,
-          },
-        });
+        const response = await fetch(
+          `${_apiBase}/api/v1/routes/?delivery_date__gte=${startDate ? startDate : formattedDate}&delivery_date__lte=${
+            endDate ? endDate : formattedDate
+          }`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `JWT ${token}`,
+            },
+          }
+        );
 
         if (response.ok) {
           const data = await response.json();
@@ -224,8 +178,6 @@ const formattedDate = `${year}-${month}-${day}`;
 
           <Column field="car.car_number" header="Автомобиль" sortable filterField="car.car_number" filterPlaceholder="Поиск по авто" />
           <Column field="delivery_date" header="Дата" sortable filterField="delivery_date" filterPlaceholder="Поиск по дате" />
-
-          
         </DataTable>
       </Spin>
     </div>

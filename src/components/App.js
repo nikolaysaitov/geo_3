@@ -9,12 +9,16 @@ import Dispatchers from "./Dispatchers/Dispatchers";
 import Managers from "./Managers/Managers";
 import Routes from "./Routes/Routes";
 import Main from "./Main";
+import Districts from './Districts/Districts'
+import CourierMain from "../components/CouriersAccount/CourierMain";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import { _apiBase } from "../services/Api";
 import "primereact/resources/themes/lara-light-blue/theme.css";
 import "primereact/resources/primereact.min.css"; //core css
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import './App.css';
+
 function App() {
   const [isLoggedIn, setLoggedIn] = useState(!!localStorage.getItem("access"));
   // const [userGroup, setUserGroup] = useState("");
@@ -91,9 +95,16 @@ function App() {
         <Route path="/signup">{<SignUp onLogin={handleLogin} />}</Route>
         <Route path="/signin">{<SignIn onLogin={handleLogin} />}</Route>
 
+        {userGroup === "Courier" && (
+          <>
+            <Route path="/courier_acc">
+              <CourierMain />
+            </Route>
+          </>
+        )}
+
         {userGroup === "Owner" && (
           <>
-
             <Route path="/cars">
               <Cars />
             </Route>
@@ -109,6 +120,9 @@ function App() {
             <Route path="/routes">
               <Routes />
             </Route>
+            <Route path="/districts">
+              <Districts />
+            </Route>
           </>
         )}
         {userGroup === "Dispatcher" && (
@@ -121,6 +135,9 @@ function App() {
             </Route>
             <Route path="/routes">
               <Routes />
+            </Route>
+            <Route path="/districts">
+              <Districts />
             </Route>
           </>
         )}
@@ -138,26 +155,16 @@ function App() {
             <Route path="/routes">
               <Routes />
             </Route>
-          </>
-        )}
-        {userGroup === "Courier" && (
-          <>
-           
-            <Route path="/routes">
-              <Routes />
+            <Route path="/districts">
+              <Districts />
             </Route>
+           
           </>
         )}
-        {/* <Route exact path="/">
-          <Main onVerifyToken={handleVerifyToken} isLoggedIn={isLoggedIn} />
-        </Route> */}
+
 
         <Route exact path="/">
-          {!isLoggedIn ? (
-            <Redirect to="/signup" />
-          ) : (
-            <Main onVerifyToken={handleVerifyToken} isLoggedIn={isLoggedIn} />
-          )}
+          {!isLoggedIn ? <Redirect to="/signup" /> : <Main onVerifyToken={handleVerifyToken} isLoggedIn={isLoggedIn} />}
         </Route>
 
         {/* <Route exact path="/">
