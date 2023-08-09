@@ -64,7 +64,7 @@ useEffect(() => {
       icon: <GrCar />,
     },
     {
-      label: <Link to="##">Добавить заявку</Link>,
+      label: <Link to="/add_claim">Добавить заявку</Link>,
       key: "/add_claim",
       icon: <GrDuplicate />,
     },
@@ -107,7 +107,7 @@ useEffect(() => {
       icon: <GrCar />,
     },
     {
-      label: <Link to="##">Добавить заявку</Link>,
+      label: <Link to="/add_claim">Добавить заявку</Link>,
       key: "/add_claim",
       icon: <GrDuplicate />,
     },
@@ -157,7 +157,7 @@ useEffect(() => {
       icon: <GrCar />,
     },
     {
-      label: <Link to="##">Добавить заявку</Link>,
+      label: <Link to="/add_claim">Добавить заявку</Link>,
       key: "/add_claim",
       icon: <GrDuplicate />,
     },
@@ -207,9 +207,9 @@ useEffect(() => {
   const [current, setCurrent] = useState(location.pathname);
 
   const handleClick = (e) => {
-    console.log("click ", e);
+    // console.log("click ", e);
     setCurrent(e.key);
-    console.log(location.pathname);
+    // console.log(location.pathname);
   };
 
   useEffect(() => {
@@ -230,6 +230,7 @@ function mapStateToProps(state) {
     userGroup: state.userGroup,
     userName: state.userName,
     userSurName: state.userSurName,
+    
   };
 }
 

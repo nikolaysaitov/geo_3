@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Button } from "primereact/button";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Toast } from "primereact/toast";
@@ -11,6 +11,7 @@ import { Spin } from "antd";
 import "./SignIn.css";
 import withLayout from '../WithLayout/WithLayout';
 import { _apiBase } from "../../services/Api";
+import { Input } from "antd";
 
 
 const SignupSchema = yup.object().shape({
@@ -39,6 +40,7 @@ function SignUp({ onLogin }) {
   // };
 
   const {
+    control,
     register,
     handleSubmit,
     formState: { errors },
@@ -73,10 +75,10 @@ function SignUp({ onLogin }) {
     <form className="form_signin" onSubmit={handleSubmit(onSubmit2)}>
       <Spin className="spin" spinning={loading} size="large">
       <label>Телефон</label>
-      <input className="input_signin" type="phone" placeholder="79998887766" {...register("tel")} />
+      <Controller name="tel" control={control} render={({ field }) => <Input type="phone" placeholder="79998887766" {...field} />} />
       {errors.tel && <p className="p__signup">{errors.tel.message}</p>}
       <label>Пароль</label>
-      <input className="input_signin" type="password" placeholder="password12345" {...register("password")} />
+      <Controller name="password" control={control} render={({ field }) => <Input type="password" placeholder="password12345" {...field} />} />
       {errors.password && <p className="p__signup">{errors.password.message}</p>}
 
       <Button className="button__signin__submit" type="submit" label="Войти" severity="secondary"></Button>

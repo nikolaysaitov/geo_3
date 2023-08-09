@@ -11,6 +11,7 @@ import Routes from "./Routes/Routes";
 import Main from "./Main";
 import Districts from './Districts/Districts'
 import CourierMain from "../components/CouriersAccount/CourierMain";
+import AddClaim from "./AddClaim/AddClaim";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import { _apiBase } from "../services/Api";
 import "primereact/resources/themes/lara-light-blue/theme.css";
@@ -53,10 +54,11 @@ function App() {
       console.log("token is off");
     }
   }
-  console.log("isLoggedIn:", isLoggedIn);
+  // console.log("isLoggedIn:", isLoggedIn);
 
   //Проверяем группу пользователя и записываем в стор редакс
   const userGroup = useSelector((state) => state.userGroup);
+
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -87,7 +89,7 @@ function App() {
       }
     };
     HandleVerifyGroup();
-  }, [dispatch]);
+  }, []);
 
   return (
     <>
@@ -123,6 +125,9 @@ function App() {
             <Route path="/districts">
               <Districts />
             </Route>
+            <Route path="/add_claim">
+              <AddClaim />
+            </Route>
           </>
         )}
         {userGroup === "Dispatcher" && (
@@ -138,6 +143,9 @@ function App() {
             </Route>
             <Route path="/districts">
               <Districts />
+            </Route>
+            <Route path="/add_claim">
+              <AddClaim />
             </Route>
           </>
         )}
@@ -158,6 +166,9 @@ function App() {
             <Route path="/districts">
               <Districts />
             </Route>
+            <Route path="/add_claim">
+              <AddClaim />
+            </Route>
            
           </>
         )}
@@ -166,6 +177,7 @@ function App() {
         <Route exact path="/">
           {!isLoggedIn ? <Redirect to="/signup" /> : <Main onVerifyToken={handleVerifyToken} isLoggedIn={isLoggedIn} />}
         </Route>
+        
 
         {/* <Route exact path="/">
           {!isLoggedIn ? (

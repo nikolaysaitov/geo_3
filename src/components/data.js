@@ -7,7 +7,9 @@ const data = [
   {
     name: "ул Адмирала Кузнецова, д 58, кв 22",
     calculated_delivery_time: 11.18,
+    sdgdahgstrae: "sfrger",
     fact_delivery_time: 11.26,
+    fdgdfgd: 1,
   },
   {
     name: "ул Шепеткова, д 46, кв 18",
@@ -33,6 +35,7 @@ const data = [
     name: "ул Давыдова, д 7, кв 5",
     calculated_delivery_time: 16.20,
     fact_delivery_time: 16.25,
+    hghggh: '',
   },
   {
     name: "ул Нейбута, д 2А к 2, кв 85",

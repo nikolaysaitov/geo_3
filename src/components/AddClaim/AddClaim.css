@@ -1,0 +1,152 @@
+.input_add_claim {
+    /* -webkit-box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2); */
+    border-radius: 8px;
+    border: 1px solid #80808087;
+
+}
+
+/* .input_add_claim_block:not(:last-child) {
+    margin-right: 10px;
+} */
+.input_add_claim_block{
+    margin-right: 10px;
+}
+
+.input_add_claim:focus {
+
+    outline: 1px solid rgba(0, 0, 0, 0.411) !important;
+
+
+}
+
+.input_add_claim::placeholder {
+    color: rgba(0, 0, 0, 0.233);
+    /* здесь вы можете задать любой другой цвет */
+}
+
+
+.form_add_claim {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.button__add_claim__submit {
+    margin-top: 30px !important;
+}
+.button__ok{
+    background-color:green;
+}
+
+.p__add_claim {
+    margin: 0px;
+    padding: 0px;
+}
+
+.p__add_claim {
+    color: #bf1650;
+}
+
+.p__add_claim::before {
+    display: inline;
+    content: "⚠ ";
+}
+
+.p__add_claim__link {
+    justify-self: center;
+}
+
+.ant-spin-container {
+    display: grid;
+}
+
+/* @media (min-width: 250px) and (max-width: 991px) {
+    .form_add_claim {
+        max-width: 270px !important;
+        margin: 0 auto !important;
+    }
+}
+
+.form_add_claim {
+    width: 350px;
+    margin: 0 auto;
+} */
+
+
+
+@media (min-width: 650px) {
+
+.form_block{
+    display: flex;
+}
+}
+
+.select_add_claim{
+    padding: 10px;
+
+}
+
+.select_add_claim option {
+    appearance: none;
+    height: 20px;
+    border-radius: 5px !important;/* Ваш код стилей для элемента option */
+    padding: 10px !important;
+  }
+  
+  /* Стилизация значка стрелки открытия */
+  .select_add_claim:after {
+    content: "";
+    position: absolute;
+    top: 0%;
+    right: 0px;
+    transform: translateY(-50%);
+    /* Ваш код стилей для значка стрелки */
+  }
+
+  .react-dadata__input{
+    height: 32px !important;
+    border-radius: 6px !important;
+    font-size: 14px !important;
+  }
+
+  .react-dadata__input::placeholder {
+    color: #ccc;
+  }
+
+
+
+/* .ant-tabs-card .ant-tabs-content {
+  background-color: #612020 !important; 
+} */
+
+.ant-tabs-nav{
+    margin: 0px !important;
+}
+.ant-tabs-content-holder{
+    background-color: white !important;
+}
+/* .ant-spin-container{
+    margin: 20px !important;
+} */
+.form_block{
+    margin: 0 20px 0px;
+}
+.p-toast {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .p-toast-top-right{
+    top: 50% !important;
+  }
+
+  .ant-tabs-content-holder{
+    border-left: 1px solid #f0f0f0;
+    border-right: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+

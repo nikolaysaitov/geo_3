@@ -20,10 +20,6 @@ import L from "leaflet";
 import "leaflet-polylinedecorator";
 
 
-
-
-import MapComponent from "./MapComponent";
-
 function Districts() {
   const decodeGeometry = (geometry) => {
     const decodedCoordinates = decode(geometry);

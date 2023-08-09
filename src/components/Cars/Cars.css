@@ -17,3 +17,7 @@
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
   }
+
+  .select_courier *{
+    padding: 3px 0px 0px 9px !important;
+  }

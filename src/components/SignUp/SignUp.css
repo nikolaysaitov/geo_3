@@ -9,6 +9,13 @@
     height: 95vh;
     /* overflow-y: hidden; */
   }
+
+  .input_signup:focus {
+
+    outline: 1px solid rgba(0, 0, 0, 0.411) !important;
+
+
+}
 .input_signup {
   /* -webkit-box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);

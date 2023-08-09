@@ -22,6 +22,7 @@
     "polyline-encoded": "^0.0.9",
     "primereact": "^9.5.0",
     "react": "^18.2.0",
+    "react-dadata": "^2.23.1",
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.5",
     "react-hook-form": "^7.44.3",

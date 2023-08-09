@@ -1,7 +1,7 @@
 // // Страница регистрации
 
 import React, { useState, useRef } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller  } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ import { Toast } from 'primereact/toast';
 import { Spin } from "antd";
 import withLayout from '../WithLayout/WithLayout';
 import { _apiBase } from "../../services/Api";
+import { Input } from "antd";
 
 const SignupSchema = yup.object().shape({
   name: yup.string().required("Обязательное поле"),
@@ -35,6 +36,7 @@ function SignUp({ onLogin }) {
     toast.current.show({severity:'info', summary: 'Спасибо', detail:'Ждите активации аккаунта', life: 7000});
 }
   const {
+    control,
     register,
     handleSubmit,
     formState: { errors },
@@ -71,27 +73,27 @@ function SignUp({ onLogin }) {
       <Toast ref={toast} />
       <div>
         <label>Имя</label>
-        <input className="input_signup" type="text" placeholder="Иван" {...register("name")} />
+        <Controller name="name" control={control} render={({ field }) => <Input type="text" placeholder="Иван"  {...field} />} />
         {errors.name && <p className="p__signup" >{errors.name.message}</p>}
       </div>
       <div>
         <label>Фамилия</label>
-        <input className="input_signup" type="text" placeholder="Иванов" {...register("surname")} />
+        <Controller name="surname" control={control} render={({ field }) => <Input type="text" placeholder="Иванов"  {...field} />} />
         {errors.surname && <p className="p__signup">{errors.surname.message}</p>}
       </div>
       <div>
         <label>Телефон</label>
-        <input className="input_signup" type="phone" placeholder="79998887766" {...register("tel")} />
+        <Controller name="tel" control={control} render={({ field }) => <Input type="phone" placeholder="79998887766"   {...field} />} />
         {errors.tel && <p className="p__signup">{errors.tel.message}</p>}
       </div>
       <div>
         <label>Пароль</label>
-        <input className="input_signup" type="password" placeholder="password12345" {...register("password")} />
+        <Controller name="password" control={control} render={({ field }) => <Input type="password" placeholder="password12345"  {...field} />} />
         {errors.password && <p className="p__signup">{errors.password.message}</p>}
       </div>
       <div >
         <label>Группа</label>
-        <input className="input_signup" type="text" placeholder="Группа" {...register("group")} />
+        <Controller name="group" control={control} render={({ field }) => <Input type="text" placeholder="Группа"   {...field} />} />
         {errors.group && <p className="p__signup">{errors.group.message}</p>}
       </div>
       <Button className="button__signup__submit" type="submit" label="Регистрация" severity="secondary" />

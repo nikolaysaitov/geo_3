@@ -3,5 +3,11 @@
 }
 
 .recharts-responsive-container{
-    min-height: 700px !important;
+    min-height: 400px !important;
+   
 }
+
+/* .recharts-cartesian-axis-ticks{
+    font-size: 9px;
+} */
+

@@ -12,7 +12,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
 import { Toast } from "primereact/toast";
-
+import { useSelector } from 'react-redux';
 
 
 function Couriers() {
@@ -137,8 +137,12 @@ function Couriers() {
 
   console.log("couriers:", couriers);
   const header = renderHeader();
+
+
+  const data = useSelector(state => state.userGroup);
   return (
     <div className="container container__couriers card mt-4">
+
       <Toast ref={toast} className="ui-toast" />
       <Spin className="spin" spinning={loading} size="large">
         <DataTable

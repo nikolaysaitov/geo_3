@@ -4,7 +4,7 @@ import { _apiBase } from "../../services/Api";
 import "./Cars.css";
 import { BsSearch } from "react-icons/bs";
 
-import { Spin } from "antd";
+import { Spin, Button } from "antd";
 // import { Switch } from "antd";
 import { Dialog } from "primereact/dialog";
 import { FilterMatchMode, FilterOperator, filterMatchModeOptions } from "primereact/api";
@@ -12,7 +12,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
 import { Toast } from "primereact/toast";
-import { Button } from "primereact/button";
+// import { Button } from "primereact/button";
 import { InputNumber } from "primereact/inputnumber";
 import { Dropdown } from "primereact/dropdown";
 import { useForm, Controller } from "react-hook-form";
@@ -28,6 +28,9 @@ const SignupSchema = yup.object().shape({
 });
 
 function Cars() {
+
+
+
   const [autoDialog, setAutoDialog] = useState(false);
 
   const hideDialog = () => {
@@ -57,6 +60,17 @@ function Cars() {
     defaultValues,
   });
 
+  const showInfo = () => {
+    toast.current.show({ severity: "success", summary: "Спасибо", detail: "Автомобиль успешно добавлен", life: 4000 });
+  };
+  const showError = () => {
+    toast.current.show({
+        severity: "error",
+        summary: "Ошибка",
+        detail: "Попробуйте еще раз, или обратитесь в службу поддержки",
+        life: 4000,
+    });
+};
   async function onSubmit(data) {
     const courierId = data.courier.id;
     const newData = { ...data, courier: courierId };
@@ -80,6 +94,7 @@ function Cars() {
         reset();
         setCars((prevCars) => [...prevCars, data]);
         setAutoDialog(false);
+        showInfo()
       } else {
         setLoading(false);
         const data = await response.json();
@@ -137,14 +152,7 @@ function Cars() {
 
   const [loading, setLoading] = useState(false);
   const toast = useRef(null);
-  const showError = () => {
-    toast.current.show({
-      severity: "error",
-      summary: "Ошибка",
-      detail: "Попробуйте еще раз, перезагрузите страницу или обратитесь в службу поддержки",
-      life: 5000,
-    });
-  };
+
 
   const [cars, setCars] = useState([]);
   const [globalFilterValue, setGlobalFilterValue] = useState("");
@@ -210,9 +218,11 @@ function Cars() {
           <div>
             <span className="p-input-icon-left">
               <BsSearch />
-              <InputText className="search__input" value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Поиск" />
+              <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Поиск" />
             </span>
-            <Button label="Добавить автомобиль" type="primary" onClick={openNew} style={{ height: "38px", marginLeft: "10px" }} />
+            <Button type="primary"  onClick={openNew} style={{ height: "31px", marginLeft: "10px" }}>
+            Добавить автомобиль
+                </Button>
           </div>
         </div>
       </>
@@ -309,6 +319,7 @@ function Cars() {
                       id={field.courier}
                       value={field.value}
                       optionLabel="name"
+                      className="select_courier"
                       placeholder="Выберите водителя"
                       options={selectedCourier}
                       focusInputRef={field.ref}
@@ -320,8 +331,12 @@ function Cars() {
                 {errors.courier && <p className="p__signup">{errors.courier.message}</p>}
               </div>
               <div className="d-flex mt-5">
-                <Button label="Закрыть" outlined onClick={hideDialog} style={{ marginRight: "10px" }} />
-                <Button label="Добавить автомобиль" type="submit" />
+                <Button onClick={hideDialog} style={{ marginRight: "10px" }} >
+                Закрыть
+                </Button>
+                <Button type="primary" htmlType="submit" style={{ height: "31px !important" }}>
+                  Сформировать заявку
+                </Button>
               </div>
             </div>
           </form>

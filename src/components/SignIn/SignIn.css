@@ -10,6 +10,12 @@
     /* overflow-y: hidden; */
   }
 
+  .input_signin:focus {
+
+    outline: 1px solid rgba(0, 0, 0, 0.411) !important;
+
+
+}
 
   .input_signin {
     /* -webkit-box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
